@@ -21,3 +21,17 @@ class User(db.Model):
 
   def check_password(self, password):
     return check_password_hash(self.pwdhash, password)
+
+
+class Item(db.Model):
+    __tablename__ = 'items'
+    id = db.Column(db.Integer, primary_key= True)
+    name = db.Column(db.String(255))
+    details = db.Column(db.Text, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.uid'),
+        nullable=False)
+    
+    def __init__(self, name, details, user_id):
+        self.name = firstname.title()
+        self.details = details
+        self.user_id = user_id
