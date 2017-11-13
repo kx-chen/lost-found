@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, abort
 from jinja2 import TemplateNotFound
-# from . import User
-# from lostfound import db
+# from models import User
+# from lostfound.lostfound import db
 
 mod = Blueprint('user_routes', __name__)
 
