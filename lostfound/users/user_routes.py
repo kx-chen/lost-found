@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, abort
 from jinja2 import TemplateNotFound
-# from models import User
-# from lostfound.lostfound import db
+from .models import User
+from dbClient.client import db
 
 mod = Blueprint('user_routes', __name__)
 
@@ -11,9 +11,9 @@ def error():
 
 @mod.route('/register')
 def register():
-	# user = User("john", "smith", "john@smith.comsss", "johnsmith")
-	# db.session.add(user)
-	# db.session.commit()
+	user = User("john", "smith", "john@smith.comsss", "johnsmith")
+	db.session.add(user)
+	db.session.commit()
 	return render_template('users/register.html')
 
 @mod.route('/sign_in')

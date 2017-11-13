@@ -1,9 +1,11 @@
 from flask import Flask
-from dbClient import db
+from dbClient.client import db
 
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:opensesame@localhost/postgres'
+
+db.init_app(app)
 
 # Blueprints
 from public import public_routes
