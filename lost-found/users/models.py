@@ -1,5 +1,6 @@
-from lostfound import db
 from werkzeug import generate_password_hash, check_password_hash
+# from lostfound import db
+from flask_sqlalchemy import SQLAlchemy
 
 class User(db.Model):
   __tablename__ = 'users'
@@ -8,7 +9,7 @@ class User(db.Model):
   lastname = db.Column(db.String(100))
   email = db.Column(db.String(120), unique=True)
   pwdhash = db.Column(db.String(120))
-
+  
   def __init__(self, firstname, lastname, email, password):
     self.firstname = firstname.title()
     self.lastname = lastname.title()
