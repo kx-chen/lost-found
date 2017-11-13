@@ -9,3 +9,4 @@ from views.users import user_routes
 
 app.register_blueprint(public_routes.mod)
 app.register_blueprint(user_routes.mod, url_prefix='/users')
+
