@@ -3,7 +3,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Bootswatch: Flatly</title>
+    <title>Lost and Found</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="https://bootswatch.com/3/flatly/bootstrap.min.css" media="screen">
@@ -31,7 +31,7 @@
         <div class="navbar-collapse collapse" id="navbar-main">
           <ul class="nav navbar-nav">
             <li>
-              <a href="/users/register">Register</a>
+              <a href={{ url_for('user_routes.register') }}>Register</a>
             </li>
             <li>
               <a href="/items/report">Report lost item</a>
@@ -53,7 +53,8 @@
 
       	<div class="jumbotron top">
       		<h1> We help find lost items.</h1>
-      		<p> To date, we have recovered 0 items! Learn how you can get your items back easily.</p>
+      		<p> To date, we have recovered 0 items! </p>
+          <a href={{ url_for('user_routes.register') }} class="btn btn-primary"> Sign up </a>
       	</div>
 
 

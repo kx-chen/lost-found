@@ -3,15 +3,15 @@ from jinja2 import TemplateNotFound
 
 mod = Blueprint('user_routes', __name__)
 
-# @mod.route('/')
-# def show():
-# 	return render_template('public/index.html')
+@mod.route('/')
+def error():
+	abort(404)
 
-# @mod.route('/about')
-# def about():
-# 	return render_template('public/about.html')
+@mod.route('/register')
+def register():
+	return render_template('users/register.html')
 
-# @mod.route('/contact')
-# def contact():
-# 	return render_template('public/contact.html')
+@mod.route('/sign_in')
+def sign_in():
+	return render_template('users/sign_in.html')
 
