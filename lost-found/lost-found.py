@@ -1,7 +1,10 @@
 from flask import Flask, render_template
-from app.blueprints.public.public_blueprint import public_routes
+
 
 
 app = Flask(__name__)
 
-app.register_blueprint(public_routes)
+# Blueprints
+from views.public import public_routes
+from views.users import user_routes
+app.register_blueprint(public_routes.mod)
