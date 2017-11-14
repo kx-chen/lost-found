@@ -63,7 +63,7 @@ def sign_in():
 @mod.route("/logout")
 def logout():
     session.pop("email", None)
-    return redirect(url_for("user_views.register"))
+    return redirect(url_for("public_views.index"))
 
 
 

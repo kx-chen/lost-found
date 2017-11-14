@@ -4,7 +4,7 @@ from jinja2 import TemplateNotFound
 mod = Blueprint('public_views', __name__)
 
 @mod.route('/')
-def show():
+def index():
 	if 'email' in session: 
 		return redirect(url_for("item_views.dashboard"))
 	return render_template('public/index.html')

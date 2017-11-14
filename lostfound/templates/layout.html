@@ -64,7 +64,7 @@
 
     <div class="container top">
 
-        <span> Logged in as {{ session['email'] }}</span>
+        {% if session['email'] %} <span> Logged in as {{ session['email'] }}</span> {% endif %}
          {% block content %}{% endblock %}
 
 
