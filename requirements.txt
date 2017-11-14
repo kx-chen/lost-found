@@ -4,3 +4,4 @@ werkzeug
 psycopg2
 flask-wtf
 flask-login
+gunicorn

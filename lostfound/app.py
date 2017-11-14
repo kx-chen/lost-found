@@ -6,8 +6,8 @@ import config
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = config.SQLALCHEMY_DATABASE_URI
-app.secret_key = config.SECRET_KEY
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['SQLALCHEMY_DATABASE_URI']
+app.secret_key = os.environ['SECRET_KEY']
 db.init_app(app)
 
 login_manager.init_app(app)
