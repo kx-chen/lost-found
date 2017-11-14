@@ -1,1 +1,1 @@
-web: gunicorn lostfound.app:app
+web: gunicorn lostfound:app
