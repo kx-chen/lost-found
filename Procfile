@@ -1,1 +1,1 @@
-web: gunicorn lostfound.app:app
+web: cd lostfound && gunicorn app:app

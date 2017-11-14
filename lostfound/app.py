@@ -8,8 +8,8 @@ from flask_login import LoginManager, login_user, login_required, logout_user
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['SQLALCHEMY_DATABASE_URI']
-app.secret_key = os.environ['SECRET_KEY']
+app.config['SQLALCHEMY_DATABASE_URI'] =  'postgresql://postgres:opensesame@localhost/postgres'
+app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 db.init_app(app)
 
 # login_manager.init_app(app)
