@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, abort
 from jinja2 import TemplateNotFound
 
-mod = Blueprint('public_routes', __name__)
+mod = Blueprint('public_views', __name__)
 
 @mod.route('/')
 def show():

@@ -11,7 +11,7 @@ class Item(db.Model):
         nullable=False)
     
     def __init__(self, name, details, user_id):
-        self.name = firstname.title()
+        self.name = name.title()
         self.details = details
         self.user_id = user_id
         
