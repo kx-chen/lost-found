@@ -63,6 +63,18 @@
 
 
     <div class="container top">
+         {% with messages = get_flashed_messages(with_categories=true) %} 
+         
+         {% if messages %}
+      
+            {% for category, message in messages %}
+                
+            <div class="alert alert-{{category}}">
+               {{ message }}
+            </div>
+            {% endfor %}
+    
+        {% endif %} {% endwith %}
 
         {% if session['email'] %} <span> Logged in as {{ session['email'] }}</span> {% endif %}
          {% block content %}{% endblock %}

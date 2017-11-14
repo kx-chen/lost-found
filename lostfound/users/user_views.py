@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, abort, request, redirect, url_for, session
+from flask import Blueprint, render_template, abort, request, redirect, url_for, session, flash
 from jinja2 import TemplateNotFound
 from .models import User
 from dbClient.client import db
@@ -25,7 +25,7 @@ def register():
 	elif request.method == 'POST':
 		if form.validate_on_submit():
 			if User.query.filter_by(email=form.email.data).first():
-				# flash email already exists message
+				flash("Email already exists, please use another email.", 'danger')
 				return render_template('users/register.html', form = form)
 			else:
 				newuser = User(form.firstname.data, form.lastname.data, form.email.data, form.password.data)
@@ -33,15 +33,16 @@ def register():
 				db.session.commit()
 
 				session['email'] = newuser.email
-				# flash accoutn created
+				flash("Account created, you are now logged in.", 'success')
 				return redirect(url_for("item_views.dashboard"))
 	else:
-		# error in making account
+		flash("An error occured. Please try again.", 'danger')
 		return render_template('users/register.html', form=form)
 
 @mod.route('/sign_in', methods=['GET', 'POST'])
 def sign_in():
 	if 'email' in session:
+		flash("You are already signed in.", 'success')
 		return redirect(url_for('item_views.dashboard'))
 	
 	form = SigninForm()
@@ -52,8 +53,10 @@ def sign_in():
 
 		if user is not None and user.check_password(password):
 			session['email'] = email
+			flash("Logged in successfully.", 'success')
 			return redirect(url_for('item_views.dashboard'))
 		else: 
+			flash("Incorrect username or password. Please try again.", 'success')
 			return redirect(url_for('user_views.sign_in'))
 			
 	elif request.method == 'GET':
@@ -62,12 +65,12 @@ def sign_in():
 
 @mod.route("/logout")
 def logout():
-    session.pop("email", None)
-    return redirect(url_for("public_views.index"))
+	flash("Logged out.", 'success')
+	session.pop("email", None)
+	return redirect(url_for("public_views.index"))
 
 
 
 @login_manager.user_loader
 def load_user(email):
     return User.query.filter_by(email = email).first()
-
