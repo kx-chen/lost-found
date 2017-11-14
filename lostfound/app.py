@@ -1,5 +1,5 @@
 from dbClient.client import db
-from dbClient.client import login_manager
+# from dbClient.client import login_manager
 from flask import Flask
 from flask_login import LoginManager, login_user, login_required, logout_user
 
@@ -12,7 +12,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['SQLALCHEMY_DATABASE_URI']
 app.secret_key = os.environ['SECRET_KEY']
 db.init_app(app)
 
-login_manager.init_app(app)
+# login_manager.init_app(app)
 
 
 # Blueprints
