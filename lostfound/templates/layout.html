@@ -40,10 +40,20 @@
                 <!-- .nav .navbar-nav -->
 
           <ul class="nav navbar-nav navbar-right">
-            <li><a href={{ url_for( 'user_views.sign_in') }} >Sign in</a></li>
-            <li>
-                <a href={{ url_for( 'user_views.register') }}>Register</a>
-            </li>
+            <li>{% if session['email'] %}
+                <a href={{ url_for( 'user_views.logout') }}>Logout</a>
+              
+                
+                {% else %}
+                <a href={{ url_for( 'user_views.sign_in') }}>
+                    Sign in</a>
+                </li>
+                
+                <li>
+                    <a href={{ url_for( 'user_views.register') }}>Register</a>
+                </li>
+                {% endif %}
+           
 
           </ul>
 
@@ -53,9 +63,8 @@
 
 
     <div class="container top">
-<!-- 
-       -->
 
+        <span> Logged in as {{ session['email'] }}</span>
          {% block content %}{% endblock %}
 
 

@@ -11,6 +11,7 @@ db.init_app(app)
 
 login_manager.init_app(app)
 
+
 # Blueprints
 from public import public_views
 from users import user_views

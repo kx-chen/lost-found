@@ -1,4 +1,25 @@
 {% extends "layout.html" %}
 
 {% block title %} Sign In {% endblock %}
-{% block content %}<h1> Sign in </h1> {% endblock %}
+{% block content %}<h1> Sign in </h1> 
+<form method="POST" action="/users/sign_in">
+
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+        {{ form.email.label }} 
+        {{ form.email(size=20, class='form-control') }}
+    </div>
+
+    <div class="form-group">
+        {{ form.password.label }} 
+        {{ form.password(size=20, class='form-control') }}
+    </div>
+
+    
+    <input type="submit" value="Sign In" class="btn btn-primary">
+</form>
+
+
+
+
+{% endblock %}

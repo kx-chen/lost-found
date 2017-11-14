@@ -2,13 +2,16 @@ from werkzeug import generate_password_hash, check_password_hash
 from dbClient.client import db
 from flask_sqlalchemy import SQLAlchemy
 
-class User(db.Model):
+from flask_login import UserMixin
+
+class User(db.Model, UserMixin):
   __tablename__ = 'users'
-  uid = db.Column(db.Integer, primary_key = True)
+  id = db.Column(db.Integer, primary_key = True)
   firstname = db.Column(db.String(100))
   lastname = db.Column(db.String(100))
   email = db.Column(db.String(120), unique=True)
   pwdhash = db.Column(db.String(120))
+  
   
   def __init__(self, firstname, lastname, email, password):
     self.firstname = firstname.title()
@@ -31,4 +34,4 @@ class User(db.Model):
     def is_anonymous(self):
         return False
     def get_id(self):
-        return str(self.email)
+        return str(self.uid)
