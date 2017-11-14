@@ -1,8 +1,8 @@
 from flask import Flask
-from dbClient.client import db
 from flask_login import LoginManager, login_user, login_required, logout_user
 from dbClient.client import login_manager
-import config
+from dbClient.client import db
+# import config
 
 app = Flask(__name__)
 
