@@ -33,6 +33,7 @@ def register():
 				db.session.commit()
 
 				session['email'] = newuser.email
+				session["user_id"] = newuser.id
 				flash("Account created, you are now logged in.", 'success')
 				return redirect(url_for("item_views.dashboard"))
 	else:

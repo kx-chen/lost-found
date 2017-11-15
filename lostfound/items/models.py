@@ -7,7 +7,7 @@ class Item(db.Model):
     id = db.Column(db.Integer, primary_key= True)
     name = db.Column(db.String(255))
     details = db.Column(db.Text, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.uid'),
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'),
         nullable=False)
     
     def __init__(self, name, details, user_id):
