@@ -3,6 +3,14 @@
 
 {% block content %}
 <h1> Your items </h1>
+<a href={{ url_for("item_views.new")}}>Add an item </a>
 
+{% for item in items %}
+<hr/>
+<h3>{{item.name}}</h3>
+<p>{{item.details}}</p>
+<hr/>
+
+{% endfor %}
 
 {% endblock %}

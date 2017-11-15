@@ -13,12 +13,13 @@ mod = Blueprint('item_views', __name__)
 @mod.route('/')
 def dashboard():
 	if 'email' in session:
-		return render_template("items/dashboard.html")
+		items = Item.query.filter_by(user_id=session["user_id"])
+		return render_template("items/dashboard.html", items=items)
 	else: 
 		return redirect(url_for("user_views.sign_in"))
 
 @mod.route('/new', methods=["GET", "POST"])
-def register():
+def new():
 	
 	if 'email' not in session:
 		return redirect(url_for("user_views.sign_in"))
