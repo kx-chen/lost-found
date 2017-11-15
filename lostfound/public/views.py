@@ -14,4 +14,8 @@ def about():
 @mod.route('/contact')
 def contact():
 	return render_template('public/contact.html')
+	
+@mod.route('/<item_id>')
+def itemView(item_id):
+	return render_template('public/contact.html')
 
