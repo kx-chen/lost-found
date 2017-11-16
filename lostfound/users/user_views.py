@@ -54,6 +54,7 @@ def sign_in():
 
 		if user is not None and user.check_password(password):
 			session['email'] = email
+			session['user_id'] = user.id
 			flash("Logged in successfully.", 'success')
 			return redirect(url_for('item_views.dashboard'))
 		else: 

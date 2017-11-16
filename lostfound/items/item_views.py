@@ -10,6 +10,11 @@ from dbClient.client import db
 
 mod = Blueprint('item_views', __name__)
 
+@mod.route('/<item_id>')
+def viewItem(item_id):
+	return render_template("items/view.html", item=item_id)
+	
+	
 @mod.route('/')
 def dashboard():
 	if 'email' in session:
