@@ -22,16 +22,23 @@ pre{
 </style>
 
 <h1>{{item.name}}</h1>
-<pre> <strong> Owner notes: </strong> {{item.details|e}}</pre>
+ <h4> <strong>Owner notes:  </strong> </h4>
+
+<pre> {{item.details|e}}</pre>
 
 <div class="contact">
     <h3> How to contact the owner:</h3>
 <p> 
-    Email: 
+    Email: {{user.email}}
     <br/>
     Phone: 
     <br/>
 </p>
+<div class="scanned-qrcode"> 
+QR code that was scanned: <br/>
+<img src=https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{ url_for("item_views.viewItem", item_id=item.id, _external=True) }}> </img>
+</div>
+
 
 </div>
 

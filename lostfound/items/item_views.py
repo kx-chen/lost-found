@@ -4,19 +4,23 @@ from flask_login import LoginManager, login_user, login_required, logout_user
 from flask_login import LoginManager, login_user, login_required, logout_user
 
 from .models import Item
+from users.models import User
 from .item_forms import NewItemForm
 from appConfig.dbClient import db
 
 
 mod = Blueprint('item_views', __name__)
 
-@mod.route('/<item_id>')
+@mod.route('/<int:item_id>')
 def viewItem(item_id):
 	item = Item.query.get(item_id)
+	
 	if item: 
-		return render_template("items/view.html", item=item)
+		userId = item.user_id
+		userOwnerOfItem = User.query.get(userId)
+		return render_template("items/view.html", item=item, user=userOwnerOfItem)
 	else: 
-		return render_template("items/view.html", item="Not found")
+		return abort(404)
 	
 	
 @mod.route('/')
