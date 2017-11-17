@@ -12,7 +12,11 @@ mod = Blueprint('item_views', __name__)
 
 @mod.route('/<item_id>')
 def viewItem(item_id):
-	return render_template("items/view.html", item=item_id)
+	item = Item.query.get(item_id)
+	if item: 
+		return render_template("items/view.html", item=item)
+	else: 
+		return render_template("items/view.html", item="Not found")
 	
 	
 @mod.route('/')

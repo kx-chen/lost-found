@@ -6,11 +6,27 @@
 <a href={{ url_for("item_views.new")}}>Add an item </a>
 <hr/>
 {% for item in items %}
+<div class="row">
+<div class="item col-sm-8">
+    <h3><a href={{ url_for("item_views.viewItem", item_id=item.id) }}> {{item.name}} </a></h3>
+    <p>{{item.details}}</p>
+    
 
-<h3>{{item.name}}</h3>
-<p>{{item.details}}</p>
-<hr/>
+</div>
 
+
+<div class="col-sm-4">
+    <p>  <img src=https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{ url_for("item_views.viewItem", item_id=item.id, _external=True) }}> </img>
+       <!--<div class="caption">-->
+       <!--     <p>Print out this QR code and stick it on the item, so that people who find it can scan.</p>-->
+       <!--   </div>-->
+    </p>
+    
+</div>
+
+
+</div> <!-- .row -->
+    <hr/>
 {% endfor %}
 
 {% endblock %}

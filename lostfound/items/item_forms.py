@@ -1,7 +1,7 @@
 from flask_wtf import Form
-from wtforms import StringField, PasswordField, SubmitField, validators
+from wtforms import StringField, PasswordField, SubmitField, validators, TextAreaField
 
 class NewItemForm(Form):
     name = StringField('Name of item', [validators.DataRequired(), validators.Length(min=5)])
-    details = StringField("Details of item", [validators.DataRequired(), validators.Length(min=5)])
+    details = TextAreaField("Details of item", [validators.DataRequired(), validators.Length(min=5)])
     submit = SubmitField("Submit")

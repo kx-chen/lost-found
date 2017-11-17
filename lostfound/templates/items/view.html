@@ -1,11 +1,39 @@
 {% extends "layout.html" %} 
-{% block title %} Register an item {% endblock %} 
+{% block title %} {{item.name}} {% endblock %} 
 
 
 {% block content %}
+<style>
+pre{
+     display: block; 
+     padding: 10px; 
+     margin: 0 0 10.5px; 
+     font-size: 1em; 
+     line-height: 1.42857143; 
+     word-break: break-all; 
+     word-wrap: break-word; 
+     color: black; 
+     background-color: #fff; 
+     border: none!important; 
+     border-radius: 4px; 
+     overflow: none!important;
+     font-family: inherit!important;
+}
+</style>
 
+<h1>{{item.name}}</h1>
+<pre> <strong> Owner notes: </strong> {{item.details|e}}</pre>
 
-<h1>{{item}}</h1>
+<div class="contact">
+    <h3> How to contact the owner:</h3>
+<p> 
+    Email: 
+    <br/>
+    Phone: 
+    <br/>
+</p>
+
+</div>
 
 
 
