@@ -1,5 +1,5 @@
 from werkzeug import generate_password_hash, check_password_hash
-from dbClient.client import db
+from appConfig.dbClient import db
 from flask_sqlalchemy import SQLAlchemy
 
 class Item(db.Model):

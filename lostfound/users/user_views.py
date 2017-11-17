@@ -1,9 +1,9 @@
 from flask import Blueprint, render_template, abort, request, redirect, url_for, session, flash
 from jinja2 import TemplateNotFound
 from .models import User
-from dbClient.client import db
+from appConfig.dbClient import db
 
-from dbClient.client import login_manager
+# from app.client import login_manager
 from flask_login import LoginManager, login_user, login_required, logout_user
 from .forms import SignupForm, SigninForm
 
@@ -70,9 +70,4 @@ def logout():
 	flash("Logged out.", 'success')
 	session.pop("email", None)
 	return redirect(url_for("public_views.index"))
-
-
-
-@login_manager.user_loader
-def load_user(email):
-    return User.query.filter_by(email = email).first()
+	
