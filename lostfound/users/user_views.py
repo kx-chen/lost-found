@@ -22,10 +22,12 @@ def register():
 	form = SignupForm()
 	if request.method == 'GET':
 		return render_template('users/register.html', form=form)
+		
 	elif request.method == 'POST':
-		if form.validate_on_submit():
+		
+		if form.validate():
 			if User.query.filter_by(email=form.email.data).first():
-				flash("Email already exists, please use another email.", 'danger')
+				flash("Email already exists, please use another email.", 'warning')
 				return render_template('users/register.html', form = form)
 			else:
 				newuser = User(form.firstname.data, form.lastname.data, form.email.data, form.password.data)
@@ -36,9 +38,12 @@ def register():
 				session["user_id"] = newuser.id
 				flash("Account created, you are now logged in.", 'success')
 				return redirect(url_for("item_views.dashboard"))
-	else:
-		flash("An error occured. Please try again.", 'danger')
-		return render_template('users/register.html', form=form)
+		else:
+			# error has occured
+			for field, errors in form.errors.items():
+				for error in errors:
+					flash(u"Error in the %s field - %s" % (getattr(form, field).label.text,error), "warning")
+			return render_template('users/register.html', form=form)
 
 @mod.route('/sign_in', methods=['GET', 'POST'])
 def sign_in():

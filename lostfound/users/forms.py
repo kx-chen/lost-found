@@ -1,14 +1,14 @@
 from flask_wtf import Form
-from wtforms import StringField, PasswordField, SubmitField
+from wtforms import StringField, PasswordField, SubmitField, validators
 
 class SignupForm(Form):
-    firstname = StringField('First Name')
-    lastname = StringField('Last Name')
-    email = StringField('Email')
-    password = PasswordField('Password')
+    firstname = StringField('First Name', [validators.DataRequired(), validators.Length(min=2)])
+    lastname = StringField('Last Name', [validators.DataRequired(), validators.Length(min=2)])
+    email = StringField('Email', [validators.DataRequired(), validators.Length(min=2)])
+    password = PasswordField('Password', [validators.DataRequired(), validators.Length(min=6)])
     submit = SubmitField("Register")
 
 class SigninForm(Form):
-    email = StringField('Email')
-    password = PasswordField('Password')
-    submit = SubmitField("Sign In")
+    email = StringField('Email', [validators.DataRequired(), validators.Length(min=2)])
+    password = PasswordField('Password', [validators.DataRequired(), validators.Length(min=2)])
+    submit = SubmitField("Sign In", [validators.DataRequired(), validators.Length(min=2)])
