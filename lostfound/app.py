@@ -23,5 +23,3 @@ from items import item_views
 app.register_blueprint(public_views.mod)
 app.register_blueprint(user_views.mod, url_prefix='/users')
 app.register_blueprint(item_views.mod, url_prefix='/items')
-
-app.run(host='0.0.0.0', port=8080)
