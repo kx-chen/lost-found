@@ -1,7 +1,7 @@
 import unittest
 
 from lostfound.users.models import User
-from lostfound.appConfig.dbClient import db
+from base import db
 from base import BaseTestCase
 
 class FlaskTestCase(BaseTestCase):

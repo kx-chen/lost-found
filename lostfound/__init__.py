@@ -1,5 +1,4 @@
 from flask import Flask
-from lostfound.appConfig.dbClient import db
 from lostfound.appConfig.appFactory import create_app
 
 app = create_app()
@@ -7,6 +6,7 @@ app = create_app()
 
 # psql -h localhost -U kai postgres
 # heroku pg:psql postgresql-animated-12554 --app lostfoundapp
+# export FLASK_APP=lostfound:app
 # flask run -h 0.0.0.0 -p 8080
 
 # 'postgresql://kai:opensesame@localhost:5432/postgres'
