@@ -4,9 +4,9 @@ from flask_login import LoginManager, login_user, login_required, logout_user
 from flask_login import LoginManager, login_user, login_required, logout_user
 
 from .models import Item
-from users.models import User
+from lostfound.users.models import User
 from .item_forms import NewItemForm
-from appConfig.dbClient import db
+from lostfound.appConfig.dbClient import db
 
 
 mod = Blueprint('item_views', __name__)

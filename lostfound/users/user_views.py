@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, abort, request, redirect, url_for, session, flash
 from jinja2 import TemplateNotFound
 from .models import User
-from appConfig.dbClient import db
+from lostfound.appConfig.dbClient import db
 
 # from app.client import login_manager
 from flask_login import LoginManager, login_user, login_required, logout_user
