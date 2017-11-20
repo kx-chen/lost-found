@@ -3,5 +3,5 @@ from .dbClient import db
 
 
 def create_app(cfg=None):
-    app = Flask('app')
+    app = Flask('lostfound.app')
     return app
