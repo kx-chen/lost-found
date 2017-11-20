@@ -1,5 +1,5 @@
 from werkzeug import generate_password_hash, check_password_hash
-from lostfound.appConfig.appFactory import db
+from lostfound.appConfig.appFa import db
 from flask_sqlalchemy import SQLAlchemy
 
 from flask_login import UserMixin

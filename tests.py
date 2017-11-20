@@ -1,2 +1,0 @@
-from lostfound import app
-

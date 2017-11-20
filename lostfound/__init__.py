@@ -4,6 +4,7 @@ from lostfound.appConfig.appFactory import create_app
 
 app = create_app()
 
+
 # psql -h localhost -U kai postgres
 # heroku pg:psql postgresql-animated-12554 --app lostfoundapp
 # flask run -h 0.0.0.0 -p 8080
@@ -15,10 +16,10 @@ app = create_app()
 
 
 # Blueprints
-from public import public_views
-from users import user_views
-from items import item_views
+# from public import public_views
+# from users import user_views
+# from items import item_views
 
-app.register_blueprint(public_views.mod)
-app.register_blueprint(user_views.mod, url_prefix='/users')
-app.register_blueprint(item_views.mod, url_prefix='/items')
+# app.register_blueprint(public_views.mod)
+# app.register_blueprint(user_views.mod, url_prefix='/users')
+# app.register_blueprint(item_views.mod, url_prefix='/items')
