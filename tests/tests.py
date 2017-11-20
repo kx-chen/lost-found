@@ -1,18 +1,19 @@
 import unittest
-from tests.base import BaseTestCase
+
 from lostfound.users.models import User
 from lostfound.appConfig.dbClient import db
+from base import BaseTestCase
 
 class FlaskTestCase(BaseTestCase):
     def test_userCreated(self):
-        db.create_all()
-        user = User("admin", "admin", "admin@saasfsdffsdf.com","passwords" )
+        
+        user = User("john", "admin", "admin@saasfsdffsdf.com","passwords")
         db.session.add(user)
         db.session.commit()
         
         createdUser = User.query.get(1)
         
-        self.assertEqual(createdUser.firstname, "Admin")
+        self.assertEqual(createdUser.firstname, "John")
     
     def test_index(self):
         response = self.client.get('/users/sign_in')
