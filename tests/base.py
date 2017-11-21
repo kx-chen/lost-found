@@ -14,6 +14,8 @@ class BaseTestCase(TestCase):
         app = create_app()
         app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
         app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:'
+        
+        self.app = app
         return app
 
     def setUp(self):
