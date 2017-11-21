@@ -11,7 +11,6 @@ class TestUserAuthentications(BaseTestCase):
         db.session.commit()
         
         createdUser = User.query.get(1)
-        
         self.assertEqual(createdUser.firstname, "John")
         
     def test_userSignIn(self):
