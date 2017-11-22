@@ -1,9 +1,11 @@
 language: python
 python:
     - 3.6
-    - nightly
 install:
   - pip install -r requirements.txt
  
 script: 
-    - python runTest.py 
+    - python runTest.py
+
+after_success:
+  - coveralls
