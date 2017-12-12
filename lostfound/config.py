@@ -1,6 +1,6 @@
 SECRET_KEY = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
-SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:opensesame@localhost/postgres'
+SQLALCHEMY_DATABASE_URI = 'postgresql://kai:opensesame@localhost:5432/postgres'
 
 # psql -h localhost -U kai postgres
 # heroku pg:psql postgresql-animated-12554 --app lostfoundapp
