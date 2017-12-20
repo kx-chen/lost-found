@@ -8,6 +8,8 @@ from lostfound.users import user_views
 from lostfound.items import item_views
 from flask_sqlalchemy import SQLAlchemy
 from lostfound import config
+from flask_login import LoginManager
+from lostfound.users.models import User
 
 def create_app(cfg=None):
     app = Flask('lostfound')
@@ -17,13 +19,18 @@ def create_app(cfg=None):
     app.config['SQLALCHEMY_DATABASE_URI'] =  os.environ.get('DATABASE_URL', config.SQLALCHEMY_DATABASE_URI)
     app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
     
-    # db.app = app
+    login_manager = LoginManager()
+    login_manager.init_app(app)
+    
     db.init_app(app)
     
     app.register_blueprint(public_views.mod)
     app.register_blueprint(user_views.mod, url_prefix='/users')
     app.register_blueprint(item_views.mod, url_prefix='/items')
     
+    @login_manager.user_loader
+    def load_user(email):
+        return User.query.filter_by(email = email).first()
     
     
     return app

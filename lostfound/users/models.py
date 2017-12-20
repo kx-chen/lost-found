@@ -1,7 +1,6 @@
 from werkzeug import generate_password_hash, check_password_hash
 from lostfound.appConfig.appFactory import db
 from flask_sqlalchemy import SQLAlchemy
-
 from flask_login import UserMixin
 
 class User(db.Model, UserMixin):
@@ -34,4 +33,4 @@ class User(db.Model, UserMixin):
     def is_anonymous(self):
         return False
     def get_id(self):
-        return str(self.uid)
+        return str(self.id)
