@@ -57,8 +57,9 @@ def sign_in():
 		user = User.query.filter_by(email=email).first()
 
 		if user is not None and user.check_password(password):
-			session['email'] = email
-			session['user_id'] = user.id
+			# session['email'] = email
+			# session['user_id'] = user.id
+			login_user(user)
 			flash("Logged in successfully.", 'success')
 			return redirect(url_for('item_views.dashboard'))
 		else: 
@@ -72,6 +73,7 @@ def sign_in():
 @mod.route("/logout")
 def logout():
 	flash("Logged out.", 'success')
-	session.pop("email", None)
+	# session.pop("email", None)
+	logout_user()
 	return redirect(url_for("public_views.index"))
 	

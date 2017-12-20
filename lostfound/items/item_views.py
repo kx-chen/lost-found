@@ -1,7 +1,6 @@
 from flask import Blueprint, render_template, abort, session, redirect, url_for, request
 from jinja2 import TemplateNotFound
 from flask_login import LoginManager, login_user, login_required, logout_user
-from flask_login import LoginManager, login_user, login_required, logout_user
 
 from .models import Item
 from lostfound.users.models import User
@@ -24,12 +23,10 @@ def viewItem(item_id):
 	
 	
 @mod.route('/')
+@login_required
 def dashboard():
-	if 'email' in session:
 		items = Item.query.filter_by(user_id=session["user_id"])
 		return render_template("items/dashboard.html", items=items)
-	else: 
-		return redirect(url_for("user_views.sign_in"))
 
 @mod.route('/new', methods=["GET", "POST"])
 def new():

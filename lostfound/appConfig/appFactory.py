@@ -29,8 +29,8 @@ def create_app(cfg=None):
     app.register_blueprint(item_views.mod, url_prefix='/items')
     
     @login_manager.user_loader
-    def load_user(email):
-        return User.query.filter_by(email = email).first()
+    def load_user(id):
+        return User.query.filter_by(id = id).first()
     
     
     return app
