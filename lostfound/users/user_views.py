@@ -71,6 +71,7 @@ def sign_in():
 
 
 @mod.route("/logout")
+@login_required
 def logout():
 	flash("Logged out.", 'success')
 	# session.pop("email", None)

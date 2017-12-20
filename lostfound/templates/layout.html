@@ -45,7 +45,8 @@
                 <!-- .nav .navbar-nav -->
 
           <ul class="nav navbar-nav navbar-right">
-            <li>{% if session['email'] %}
+
+            <li>{% if current_user.is_authenticated %}
                 <a href={{ url_for( 'user_views.logout') }}>Logout</a>
               
                 
