@@ -5,7 +5,7 @@ from base import db
 from base import BaseTestCase
 
 class TestUserAuthentications(BaseTestCase):
-    def test_userCreated(self):
+    def test_user_created(self):
         user = User("john", "admin", "admin@gmail.com","passwords")
         db.session.add(user)
         db.session.commit()
@@ -13,7 +13,7 @@ class TestUserAuthentications(BaseTestCase):
         createdUser = User.query.get(1)
         self.assertEqual(createdUser.firstname, "John")
         
-    def test_userSignIn(self):
+    def test_user_sign_in(self):
         user = User("john", "smith", "john@smith.com","password")
         db.session.add(user)
         db.session.commit()
@@ -26,7 +26,7 @@ class TestUserAuthentications(BaseTestCase):
         response = self.client.post("/users/sign_in", data=dict(email="john@smith.com", password="password"), follow_redirects=True)
         assert 'Logged in successfully.'.encode() in response.data
     
-    def test_userRegister(self):
+    def test_user_register(self):
         response = self.client.post("/users/register", data=dict(firstname="", lastname="", email="", password=""), follow_redirects=True)
         assert "Error in the Last Name field - This field is required.".encode() in response.data
         
@@ -37,10 +37,6 @@ class TestUserAuthentications(BaseTestCase):
         # Log out
         response = self.client.get("/users/logout", follow_redirects=True)
         assert 'Logged out.'.encode() in response.data
-        
-        
-        
-        
-        
+
 if __name__ == '__main__':
     unittest.main()
