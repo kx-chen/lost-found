@@ -20,23 +20,23 @@ class TestUserAuthentications(BaseTestCase):
         
         # Incorrect password
         response = self.client.post("/users/sign_in", data=dict(email="john@smith.com", password="incorrect"), follow_redirects=True)
-        assert 'Incorrect username or password. Please try again.' in response.data
+        assert 'Incorrect username or password. Please try again.'.encode() in response.data
         
         # Correct password
         response = self.client.post("/users/sign_in", data=dict(email="john@smith.com", password="password"), follow_redirects=True)
-        assert 'Logged in successfully.' in response.data
+        assert 'Logged in successfully.'.encode() in response.data
     
     def test_userRegister(self):
         response = self.client.post("/users/register", data=dict(firstname="", lastname="", email="", password=""), follow_redirects=True)
-        assert "Error in the Last Name field - This field is required." in response.data
+        assert "Error in the Last Name field - This field is required.".encode() in response.data
         
         # Create user with proper fields
         response = self.client.post("/users/register", data=dict(firstname="suk", lastname="mali", email="suk@mali.com", password="sukmali"), follow_redirects=True)
-        assert 'Account created, you are now logged in.' in response.data
+        assert 'Account created, you are now logged in.'.encode() in response.data
         
         # Log out
         response = self.client.get("/users/logout", follow_redirects=True)
-        assert 'Logged out.' in response.data
+        assert 'Logged out.'.encode() in response.data
         
         
         
