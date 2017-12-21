@@ -22,9 +22,18 @@ class BaseTestCase(TestCase):
 
     def setUp(self):
         db.create_all()
+        user = User("john", "smith", "smith@johns.com","password")
+        db.session.add(user)
         db.session.commit()
 
     def tearDown(self):
         db.session.remove()
         db.drop_all()
+    
+    def go_to_route(self, route):
+        return self.client.get(route)
+    
+    def login(self):
+        response = self.client.post("/users/sign_in", data=dict(email="smith@johns.com", password="password"), follow_redirects=True)
+        return response
         

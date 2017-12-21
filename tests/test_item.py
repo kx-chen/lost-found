@@ -17,9 +17,16 @@ class FlaskTestCase(BaseTestCase):
         # should redirect when user not signed in
         response = self.client.post("/items/new", data=dict(name="orang", details="some orang juice"), follow_redirects=True)
         assert "Sign in".encode() in response.data
+    
+    def test_item_views(self):
+        # logged out
+        response = self.client.get("/items", follow_redirects=True)
+        self.assertEqual(response.status_code, 401)
 
-    
-    
-        
+        self.login()
+        response = self.client.get("/items", follow_redirects=True)
+        self.assertEqual(response.status_code, 200)
+        assert "Your items".encode() in response.data
+
 if __name__ == '__main__':
     unittest.main()
