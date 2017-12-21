@@ -6,6 +6,8 @@ from lostfound.appConfig.dbClient import db
 from flask_login import LoginManager, login_user, login_required, logout_user
 from .forms import SignupForm, SigninForm
 
+from lostfound.appConfig.helpers import logged_out_required
+
 mod = Blueprint('user_views', __name__)
 
 @mod.route('/')
@@ -14,10 +16,8 @@ def index():
 		return redirect(url_for("item_views.dashboard"))
 
 @mod.route('/register', methods=['GET', 'POST'])
+@logged_out_required("item_views.dashboard")
 def register():
-	if 'email' in session:
-		return redirect(url_for("item_views.dashboard"))
-
 	form = SignupForm()
 	if request.method == 'GET':
 		return render_template('users/register.html', form=form)
@@ -45,11 +45,8 @@ def register():
 			return render_template('users/register.html', form=form)
 
 @mod.route('/sign_in', methods=['GET', 'POST'])
-def sign_in():
-	if 'email' in session:
-		flash("You are already signed in.", 'success')
-		return redirect(url_for('item_views.dashboard'))
-	
+@logged_out_required("item_views.dashboard")
+def sign_in():	
 	form = SigninForm()
 	if request.method == 'POST':
 		email = form.email.data

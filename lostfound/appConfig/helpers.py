@@ -7,7 +7,7 @@ def logged_out_required(error_redirect=None):
         @wraps(view_func)
         def check_logged_out(*args, **kwargs):
             if not current_user.is_authenticated:
-                return view_func
+                return view_func(*args, **kwargs)
             else: 
                 return redirect(url_for(error_redirect))
         return check_logged_out
