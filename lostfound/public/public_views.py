@@ -17,4 +17,3 @@ def about():
 @mod.route('/contact')
 def contact():
 	return render_template('public/contact.html')
-

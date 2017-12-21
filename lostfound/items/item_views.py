@@ -7,7 +7,6 @@ from lostfound.users.models import User
 from .item_forms import NewItemForm
 from lostfound.appConfig.dbClient import db
 
-
 mod = Blueprint('item_views', __name__)
 
 @mod.route('/<int:item_id>')
@@ -20,8 +19,7 @@ def viewItem(item_id):
 		return render_template("items/view.html", item=item, user=userOwnerOfItem)
 	else: 
 		return abort(404)
-	
-	
+
 @mod.route('/')
 @login_required
 def dashboard():
@@ -30,7 +28,6 @@ def dashboard():
 
 @mod.route('/new', methods=["GET", "POST"])
 def new():
-	
 	if 'email' not in session:
 		return redirect(url_for("user_views.sign_in"))
 		
@@ -48,8 +45,3 @@ def new():
 		db.session.commit()
 		
 		return redirect(url_for("item_views.dashboard"))
-
-# @mod.route('/sign_in')
-# def sign_in():
-# 	return render_template('users/sign_in.html')
-

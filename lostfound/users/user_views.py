@@ -66,7 +66,6 @@ def sign_in():
 	elif request.method == 'GET':
 		return render_template("users/sign_in.html", form=form)
 
-
 @mod.route("/logout")
 @login_required
 def logout():
