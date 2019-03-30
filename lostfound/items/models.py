@@ -1,6 +1,5 @@
-from werkzeug import generate_password_hash, check_password_hash
 from lostfound.appConfig.appFactory import db
-from flask_sqlalchemy import SQLAlchemy
+
 
 class Item(db.Model):
     __tablename__ = 'items'
@@ -14,4 +13,3 @@ class Item(db.Model):
         self.name = name.title()
         self.details = details
         self.user_id = user_id
-        

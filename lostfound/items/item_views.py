@@ -1,7 +1,4 @@
 from flask import Blueprint, render_template, abort, session, redirect, url_for, request
-from jinja2 import TemplateNotFound
-from flask_login import LoginManager, login_user, login_required, logout_user
-from flask_login import LoginManager, login_user, login_required, logout_user
 
 from .models import Item
 from lostfound.users.models import User
@@ -10,6 +7,7 @@ from lostfound.appConfig.dbClient import db
 
 
 mod = Blueprint('item_views', __name__)
+
 
 @mod.route('/<int:item_id>')
 def viewItem(item_id):
@@ -31,6 +29,7 @@ def dashboard():
 	else: 
 		return redirect(url_for("user_views.sign_in"))
 
+
 @mod.route('/new', methods=["GET", "POST"])
 def new():
 	
@@ -51,8 +50,3 @@ def new():
 		db.session.commit()
 		
 		return redirect(url_for("item_views.dashboard"))
-
-# @mod.route('/sign_in')
-# def sign_in():
-# 	return render_template('users/sign_in.html')
-

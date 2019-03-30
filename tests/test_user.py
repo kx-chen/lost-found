@@ -1,8 +1,8 @@
 import unittest
 
 from lostfound.users.models import User
-from base import db
-from base import BaseTestCase
+from .base import db, BaseTestCase
+
 
 class TestUserAuthentications(BaseTestCase):
     def test_userCreated(self):
@@ -10,8 +10,8 @@ class TestUserAuthentications(BaseTestCase):
         db.session.add(user)
         db.session.commit()
         
-        createdUser = User.query.get(1)
-        self.assertEqual(createdUser.firstname, "John")
+        created_user = User.query.get(1)
+        self.assertEqual(created_user.firstname, "John")
         
     def test_userSignIn(self):
         user = User("john", "smith", "john@smith.com","password")
@@ -37,10 +37,7 @@ class TestUserAuthentications(BaseTestCase):
         # Log out
         response = self.client.get("/users/logout", follow_redirects=True)
         assert 'Logged out.' in response.data
-        
-        
-        
-        
+
         
 if __name__ == '__main__':
     unittest.main()

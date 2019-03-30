@@ -1,8 +1,8 @@
 import unittest
 
 from lostfound.items.models import Item
-from base import db
-from base import BaseTestCase
+from .base import db, BaseTestCase
+
 
 class FlaskTestCase(BaseTestCase):
     def test_itemCreated(self):
@@ -18,8 +18,6 @@ class FlaskTestCase(BaseTestCase):
         response = self.client.post("/items/new", data=dict(name="orang", details="some orang juice"), follow_redirects=True)
         assert "Sign in" in response.data
 
-    
-    
-        
+
 if __name__ == '__main__':
     unittest.main()

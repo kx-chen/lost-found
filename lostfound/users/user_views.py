@@ -1,18 +1,17 @@
-from flask import Blueprint, render_template, abort, request, redirect, url_for, session, flash
-from jinja2 import TemplateNotFound
+from flask import Blueprint, render_template, request, redirect, url_for, session, flash
 from .models import User
 from lostfound.appConfig.dbClient import db
 
-# from app.client import login_manager
-from flask_login import LoginManager, login_user, login_required, logout_user
 from .forms import SignupForm, SigninForm
 
 mod = Blueprint('user_views', __name__)
+
 
 @mod.route('/')
 def index():
 	if 'email' in session:
 		return redirect(url_for("item_views.dashboard"))
+
 
 @mod.route('/register', methods=['GET', 'POST'])
 def register():
@@ -45,6 +44,7 @@ def register():
 					flash(u"Error in the %s field - %s" % (getattr(form, field).label.text,error), "warning")
 			return render_template('users/register.html', form=form)
 
+
 @mod.route('/sign_in', methods=['GET', 'POST'])
 def sign_in():
 	if 'email' in session:
@@ -75,4 +75,3 @@ def logout():
 	flash("Logged out.", 'success')
 	session.pop("email", None)
 	return redirect(url_for("public_views.index"))
-	

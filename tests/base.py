@@ -1,10 +1,6 @@
 from flask_testing import TestCase
 
-from lostfound.appConfig.appFactory import create_app
-
-from lostfound.appConfig.appFactory import db
-from lostfound.users.models import User
-from lostfound.items.models import Item
+from lostfound.appConfig.appFactory import create_app, db
 
 
 class BaseTestCase(TestCase):
@@ -27,4 +23,3 @@ class BaseTestCase(TestCase):
     def tearDown(self):
         db.session.remove()
         db.drop_all()
-        
