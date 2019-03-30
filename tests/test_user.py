@@ -1,7 +1,7 @@
 import unittest
 
 from lostfound.users.models import User
-from .base import db, BaseTestCase
+from base import db, BaseTestCase
 
 
 class TestUserAuthentications(BaseTestCase):

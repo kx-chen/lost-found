@@ -1,7 +1,7 @@
 import unittest
 
 from lostfound.items.models import Item
-from .base import db, BaseTestCase
+from base import db, BaseTestCase
 
 
 class FlaskTestCase(BaseTestCase):
